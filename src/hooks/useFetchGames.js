@@ -22,7 +22,7 @@ function useFetchGames() {
 
     const fetchGames = async () => {
       try {
-        const response = await fetch(`https://api.rawg.io/api/games?key=${apiKey}&dates=${lastYearDate}-01-01,${currentDate}&ordering=-rating&page_size=20`, 
+        const response = await fetch(`https://api.rawg.io/api/games?key=${apiKey}&dates=${lastYearDate},${currentDate}&ordering=-rating&page_size=20`, 
           { signal: controller.signal }
         );
 
