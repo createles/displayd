@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./GameCard.module.css";
 import { useShoppingCart } from "../../context/CartContext";
+import { Link } from "react-router";
 
 function GameCard({ game }) {
   const { addToCart } = useShoppingCart();
@@ -23,7 +24,9 @@ function GameCard({ game }) {
         onError={() => setImageError(true)}
         />
       )}
-      <h3>{game.name}</h3>
+      <Link to={`/shop/${game.id}`}>
+        <h3>{game.name}</h3>
+      </Link>
       <p className={styles.price}>${game.price}</p>
       <button onClick={() => addToCart(game)}>Add to Cart</button>
     </div>
