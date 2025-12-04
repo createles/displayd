@@ -1,0 +1,12 @@
+.nav {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  background: #eee;
+}
+
+.badge {
+  margin-left: 5px;
+  font-weight: bold;
+  color: red;
+}
