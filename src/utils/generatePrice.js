@@ -1,6 +1,6 @@
 function generatePrice(game) {
   // check for incomplete data; if so, use base price
-  if (!game) return "19.99";
+  if (!game) return 19.99;
 
   // Check if game has indie tag
   const isIndie = game.genres?.some((genre) => genre.slug === "indie");
