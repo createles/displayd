@@ -20,20 +20,30 @@ function useFetchGames(searchQuery = null) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const [page, setPage] = useState(1);
+
+  // handles loading next page
+  function loadMore() {
+    setPage((prevPage) => prevPage + 1);
+  }
+
+  useEffect(() => {
+    setGames([]);
+    setPage(1);
+  }, [searchQuery]);
+
   useEffect(() => {
     const controller = new AbortController();
-
     setLoading(true);
-    setGames([]);
 
     const fetchGames = async () => {
       try {
-        let url = "";
+        let url = `https://api.rawg.io/api/games?key=${apiKey}&page_size=20&page=${page}`;
 
         if (searchQuery) {
-          url = `https://api.rawg.io/api/games?key=${apiKey}&search=${searchQuery}&page_size=20`;
+          url += `&search=${searchQuery}`;
         } else {
-          url = `https://api.rawg.io/api/games?key=${apiKey}&dates=${lastYearDate},${currentDate}&ordering=-rating&page_size=20`;
+          url += `&dates=${lastYearDate},${currentDate}&ordering=-rating`;
         }
 
         const response = await fetch(url, { signal: controller.signal });
@@ -47,7 +57,10 @@ function useFetchGames(searchQuery = null) {
           price: generatePrice(game)
         }));
 
-        setGames(gamesWithPrices);
+        setGames((prevGames) => {
+          return page === 1 ? gamesWithPrices : [...prevGames, ...gamesWithPrices];
+        });
+
       } catch (err) {
         if (err.name !== "AbortError") {
           setError(err);
@@ -59,9 +72,9 @@ function useFetchGames(searchQuery = null) {
 
     // call fetch games async call
     fetchGames();
-  }, [searchQuery]);
+  }, [searchQuery, page]);
 
-  return {games, error, loading };
+  return {games, error, loading, loadMore };
 }
 
 export default useFetchGames;

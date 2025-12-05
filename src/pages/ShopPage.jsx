@@ -1,14 +1,36 @@
 import useFetchGames from "../hooks/useFetchGames";
 import GameCard from "../components/GameCard/GameCard";
 import { useSearchParams } from "react-router";
+import { useEffect, useRef } from "react";
 
 function ShopPage() {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("search");
 
-  const { games, error, loading } = useFetchGames(query);
+  const { games, error, loading, loadMore } = useFetchGames(query);
 
-  if (loading) return <p>Loading...</p>;
+  const observerTarget = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !loading) {
+          loadMore();
+        }
+      }, { threshold: 1}
+    );
+
+    if (observerTarget.current) {
+      observer.observe(observerTarget.current)
+    }
+
+    return () => {
+      if (observerTarget.current) {
+        observer.unobserve(observerTarget.current);
+      }
+    };
+  }, [observerTarget, loadMore, loading])
+
   if (error) return <p>Error loading games: {error.message}</p>;
 
   const pageTitle = query
@@ -21,6 +43,7 @@ function ShopPage() {
       {games.length === 0 && query ? (
         <p>No games found for "{query}".</p>
       ) : (
+      <>
       <div
         style={{
           display: "grid",
@@ -32,6 +55,13 @@ function ShopPage() {
           <GameCard key={game.id} game={game}/>
         ))}
       </div>
+
+      {loading && <p style={{textAlign: "center"}}>Loading more games...</p>}
+      
+      {!loading && (
+        <div ref={observerTarget} style={{ height: "20px", background: "transparent" }}></div>
+      )}
+      </>
       )
       }
     </div>
