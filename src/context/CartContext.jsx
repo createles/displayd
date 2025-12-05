@@ -4,6 +4,11 @@ const CartContext = createContext();
 
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  // for showing/hiding cart
+  const openCart = () => setIsCartOpen(true);
+  const closeCart = () => setIsCartOpen(false);
 
   function addToCart(game) {
     const isItemInCart = cartItems.some((item) => item.id === game.id);
@@ -47,7 +52,16 @@ export function CartProvider({ children }) {
   console.log("Current cart:", cartItems);
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity}}>
+    <CartContext.Provider value={{ 
+      cartItems,
+      addToCart,
+      removeFromCart,
+      updateQuantity,
+      isCartOpen,
+      openCart,
+      closeCart
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

@@ -1,22 +1,22 @@
-import { NavLink } from "react-router";4
+import { Link } from "react-router";
 import { useShoppingCart } from "../../context/CartContext";
 import styles from "../NavBar/NavBar.module.css"
 import SearchBar from "../SearchBar/SearchBar";
 
 function NavBar() {
-  const { cartItems } = useShoppingCart();
+  const { cartItems, openCart} = useShoppingCart();
 
   const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <nav className={styles.nav}>
-      <NavLink to={"/"}>Home</NavLink>
-      <NavLink to={"/shop"}>Shop</NavLink>
-      <NavLink to={"/cart"}>
+      <Link to={"/"}>Home</Link>
+      <Link to={"/shop"}>Shop</Link>
+      <button onClick={openCart}>
         Cart
         {/* Only show badge if cart is not empty */}
         {totalItems > 0 && <span className={styles.badge}>({totalItems})</span>}
-      </NavLink>
+      </button>
       <SearchBar></SearchBar>
     </nav>
   )

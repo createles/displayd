@@ -1,0 +1,43 @@
+.cart {
+  display: none;
+  width: 100svw;
+  height: 100svh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.open {
+  display: block;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999; /* High Z-Index to sit on top */
+}
+
+.sideBar {
+  position: fixed;
+  top: 0;
+  right: 0; /* Stick to right side */
+  width: 350px;
+  height: 100vh;
+  background: white;
+  z-index: 1000;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+}
+
+.sideList {
+  flex: 1; /* Takes up all available space */
+  overflow-y: auto; /* Allows scrolling if list is long */
+  margin-top: 20px;
+}
+
