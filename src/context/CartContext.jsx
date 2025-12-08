@@ -10,6 +10,8 @@ export function CartProvider({ children }) {
   const openCart = () => setIsCartOpen(true);
   const closeCart = () => setIsCartOpen(false);
 
+  const [toastMessage, setToastMessage] = useState(null);
+
   function addToCart(game) {
     const isItemInCart = cartItems.some((item) => item.id === game.id);
 
@@ -26,6 +28,17 @@ export function CartProvider({ children }) {
         [ ...prevItems, { ...game, quantity: 1}]
       )
     }
+
+    setToastMessage(`Added "${game.name}" to cart`)
+    // automatically clear toast message after 3 seconds
+    setTimeout(() => {
+      setToastMessage(null);
+    }, 3000);
+  }
+
+  // Manually close ToastNotif
+  function closeToast() {
+    setToastMessage(null);
   }
 
   function removeFromCart(gameId) {
@@ -59,7 +72,9 @@ export function CartProvider({ children }) {
       updateQuantity,
       isCartOpen,
       openCart,
-      closeCart
+      closeCart,
+      toastMessage,
+      closeToast
       }}
     >
       {children}
