@@ -22,13 +22,12 @@ function CartSideBar() {
           {cartItems.map((item) => (
             <CartSideItem key={item.id} item={item} />
           ))}
-
-          <div className={styles.footer}>
-            <p className={styles.grandTotal}>{grandTotal}</p>
-            <Link to="/cart" onClick={closeCart}>
-              <button className={styles.checkOutBtn}>Check out</button>
-            </Link>
-          </div>
+        </div>
+        <div className={styles.footer}>
+          <p className={styles.grandTotal}>{grandTotal}</p>
+          <Link to="/cart" onClick={closeCart}>
+            <button className={styles.checkOutBtn}>Check out</button>
+          </Link>
         </div>
       </div>
     </div>

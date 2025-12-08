@@ -24,20 +24,28 @@
 .sideBar {
   position: fixed;
   top: 0;
-  right: 0; /* Stick to right side */
+  right: 0; 
   width: 350px;
-  height: 100vh;
+  height: 100svh;
   background: white;
   z-index: 1000;
   padding: 20px;
   display: flex;
   flex-direction: column;
   box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .sideList {
-  flex: 1; /* Takes up all available space */
+  flex-grow: 1;
   overflow-y: auto; /* Allows scrolling if list is long */
   margin-top: 20px;
+  min-height: 0;
 }
 
+.footer {
+  flex-shrink: 0;
+  border-top: 1px solid #ddd;
+  background: white; /* Ensures items don't show through behind it */
+}
