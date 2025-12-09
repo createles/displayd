@@ -7,40 +7,57 @@ function useGenreImages(genreSlugs) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const genreKey = genreSlugs.join(",");
+  // ensure we pass a valid string
+  const genreKey = (genreSlugs || []).join(",");
 
   useEffect(() => {
-
+    // set up ignore flag to prevent race conditions
+    let ignore = false;
     const slugsToFetch = genreKey.split(",");
 
     async function FetchImages() {
       try {
         setLoading(true);
 
-        const promises = slugsToFetch.map(slug =>
-          fetch(`https://api.rawg.io/api/games?key=${apiKey}&genres=${slug}&ordering=-metacritic&page_size=2`)
-            .then(res => res.json())
+        // fetch genres
+        const promises = slugsToFetch.map((slug) =>
+          fetch(`https://api.rawg.io/api/genres/${slug}?key=${apiKey}`)
+            .then((res) => {
+                if (!res.ok) throw new Error(`Failed to fetch genre: ${slug}`);
+                return res.json();
+            })
         );
 
         const results = await Promise.all(promises);
 
-        const allImages = results.flatMap(data => 
-          data.results.map(game => game.background_image)
-        );
+        if (!ignore) {
+          // take poster images from each genre
+            const genrePosters = results.map((data) => data.image_background);
 
-        // shuffle array of genres
-        const shuffled = allImages.sort(() => 0.5 - Math.random())
+            // shuffle with fisher-yates algo, order of posters become random
+            const shuffled = [...genrePosters];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
 
-        setImages(shuffled);
+            setImages(shuffled);
+        }
       } catch (err) {
-        setError(err);
+        if (!ignore) setError(err);
       } finally {
-        setLoading(false);
+        if (!ignore) setLoading(false);
       }
     };
 
-    FetchImages();
-  }, [genreKey])
+    if (genreKey) {
+        FetchImages();
+    }
+
+    return () => {
+      ignore = true;
+    };
+  }, [genreKey]);
 
   return { images, loading, error };
 }
