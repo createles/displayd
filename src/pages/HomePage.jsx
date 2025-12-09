@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import useFetchGames from "../hooks/useFetchGames";
 import GameCard from "../components/GameCard/GameCard";
 import styles from "./HomePage.module.css"
+import HeroCollage from "../components/HeroCollage/HeroCollage";
 
 
 function HomePage() {
@@ -12,13 +13,7 @@ function HomePage() {
   return (
     <div className={styles.homeContainer}>
       <section className={styles.hero}>
-        <div className={styles.heroContent}>
-          <h1> Get those games <br /> display'd. </h1>
-          <p> No more backlogs. Get your game on. </p>
-          <Link to="/shop">
-            <button className={styles.ctaBtn}>Shop now</button>
-          </Link>
-        </div>
+      <HeroCollage/>
       </section>
 
       <section className={styles.featured}>
