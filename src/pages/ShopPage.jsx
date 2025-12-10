@@ -56,7 +56,7 @@ function ShopPage() {
         ))}
       </div>
 
-      {loading && <p style={{textAlign: "center"}}>Loading more games...</p>}
+      {loading && <p style={{textAlign: "center"}}>Loading games...</p>}
       
       {!loading && (
         <div ref={observerTarget} style={{ height: "20px", background: "transparent" }}></div>
