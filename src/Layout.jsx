@@ -5,14 +5,19 @@ import ToastNotif from "./components/ToastNotif/ToastNotif";
 import { useShoppingCart } from "./context/CartContext";
 
 function Layout() {
-  const { toastMessage, closeToast } = useShoppingCart();
+  const { toast, closeToast } = useShoppingCart();
 
   return (
     <>
     <NavBar></NavBar>
     <CartSideBar></CartSideBar>
-    {toastMessage && (
-      <ToastNotif message={toastMessage} onClose={closeToast} />
+    {toast && (
+      <ToastNotif
+        key={toast.id}
+        message={toast.message}
+        onClose={closeToast} 
+      />
+
     )}
     <Outlet></Outlet>
     </>

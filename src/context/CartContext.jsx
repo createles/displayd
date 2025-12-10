@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useRef } from "react";
 
 const CartContext = createContext();
 
@@ -10,7 +10,11 @@ export function CartProvider({ children }) {
   const openCart = () => setIsCartOpen(true);
   const closeCart = () => setIsCartOpen(false);
 
-  const [toastMessage, setToastMessage] = useState(null);
+  // Handle toast state
+  const [toast, setToast] = useState(null);
+  
+  // Hold toast timer's id
+  const timerRef = useRef(null);
 
   function addToCart(game) {
     const isItemInCart = cartItems.some((item) => item.id === game.id);
@@ -29,16 +33,26 @@ export function CartProvider({ children }) {
       )
     }
 
-    setToastMessage(`Added "${game.name}" to cart`)
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+
+
+    setToast({
+      id: Date.now(),
+      message: `Added "${game.name}" to cart`
+    });
+
     // automatically clear toast message after 3 seconds
-    setTimeout(() => {
-      setToastMessage(null);
+    timerRef.current = setTimeout(() => {
+      setToast(null);
+      timerRef.current = null;
     }, 3000);
   }
 
   // Manually close ToastNotif
   function closeToast() {
-    setToastMessage(null);
+    setToast(null);
   }
 
   function removeFromCart(gameId) {
@@ -73,7 +87,7 @@ export function CartProvider({ children }) {
       isCartOpen,
       openCart,
       closeCart,
-      toastMessage,
+      toast,
       closeToast
       }}
     >
