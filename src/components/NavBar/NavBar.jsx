@@ -18,10 +18,10 @@ function NavBar() {
       <Link to={"/shop"} className={styles.navBtn}>
         <IoGameControllerOutline/>
       </Link>
-      <button onClick={openCart} className={styles.navBtn}>
+      <button onClick={openCart} className={`${styles.navBtn} ${styles.cartBtn}`}>
         <IoCartOutline/>
         {/* Only show badge if cart is not empty */}
-        {totalItems > 0 && <span className={styles.badge}>({totalItems})</span>}
+        {totalItems > 0 && <span className={styles.badge}>{totalItems}</span>}
       </button>
       <SearchBar/>
     </nav>
