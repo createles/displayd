@@ -6,11 +6,23 @@
   display: flex;
   gap: 20px;
   padding: 20px;
-  background: #eee;
+  background: var(--color-bg);
+  color: var(--color-primary);
 }
 
 .badge {
   margin-left: 5px;
   font-weight: bold;
   color: red;
+}
+
+button {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+}
+
+.navBtn {
+  color: var(--color-primary);
+  font-size: 1.5rem;
 }

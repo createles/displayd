@@ -2,6 +2,8 @@ import { Link } from "react-router";
 import { useShoppingCart } from "../../context/CartContext";
 import styles from "../NavBar/NavBar.module.css"
 import SearchBar from "../SearchBar/SearchBar";
+import { IoGameControllerOutline, IoCartOutline, IoHomeOutline } from "react-icons/io5";
+
 
 function NavBar() {
   const { cartItems, openCart} = useShoppingCart();
@@ -10,14 +12,18 @@ function NavBar() {
 
   return (
     <nav className={styles.nav}>
-      <Link to={"/"}>Home</Link>
-      <Link to={"/shop"}>Shop</Link>
-      <button onClick={openCart}>
-        Cart
+      <Link to={"/"} className={styles.navBtn}>
+        <IoHomeOutline/>
+      </Link>
+      <Link to={"/shop"} className={styles.navBtn}>
+        <IoGameControllerOutline/>
+      </Link>
+      <button onClick={openCart} className={styles.navBtn}>
+        <IoCartOutline/>
         {/* Only show badge if cart is not empty */}
         {totalItems > 0 && <span className={styles.badge}>({totalItems})</span>}
       </button>
-      <SearchBar></SearchBar>
+      <SearchBar/>
     </nav>
   )
 }

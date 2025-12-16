@@ -1,6 +1,7 @@
 import styles from "./SearchBar.module.css"
 import { useState } from "react"
 import { useNavigate } from "react-router"
+import { IoSearch } from "react-icons/io5";
 
 function SearchBar() {
   const [query, setQuery] = useState("");
@@ -14,12 +15,15 @@ function SearchBar() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input 
+      <div className={styles.container}>
+        <input 
       type="text"
       placeholder="Search games..."
       value={query}
       onChange={(e) => setQuery(e.target.value)} 
       />
+      <span className={styles.searchIcon}><IoSearch/></span>
+      </div>
     </form>
   );
 }
