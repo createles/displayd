@@ -17,7 +17,7 @@ function ShopPage() {
         if (entries[0].isIntersecting && !loading) {
           loadMore();
         }
-      }, { threshold: 1}
+      }, { threshold: 0.8}
     );
 
     if (observerTarget.current) {
