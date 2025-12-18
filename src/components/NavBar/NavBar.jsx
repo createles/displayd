@@ -12,6 +12,7 @@ function NavBar() {
 
   return (
     <nav className={styles.nav}>
+      <img src="/src/assets/images/logo/toon-dp-outline-green.svg" alt="displayd logo" srcset="" className={styles.siteLogo} />
       <Link to={"/"} className={styles.navBtn}>
         <IoHomeOutline/>
       </Link>
