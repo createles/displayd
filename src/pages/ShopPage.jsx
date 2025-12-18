@@ -2,6 +2,7 @@ import useFetchGames from "../hooks/useFetchGames";
 import GameCard from "../components/GameCard/GameCard";
 import { useSearchParams } from "react-router";
 import { useEffect, useRef } from "react";
+import styles from "./ShopPage.module.css";
 
 function ShopPage() {
   const [searchParams] = useSearchParams();
@@ -26,6 +27,7 @@ function ShopPage() {
 
     return () => {
       if (observerTarget.current) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         observer.unobserve(observerTarget.current);
       }
     };
@@ -45,11 +47,7 @@ function ShopPage() {
       ) : (
       <>
       <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-          gap: "20px",
-        }}
+        className={styles.results}
       >
         {games.map((game) => (
           <GameCard key={game.id} game={game}/>
