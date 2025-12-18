@@ -25,10 +25,12 @@ function GameCard({ game }) {
         />
       )}
       <Link to={`/shop/${game.id}`}>
-        <h3>{game.name}</h3>
+        <h3 className={styles.gameTitle}>{game.name}</h3>
       </Link>
-      <p className={styles.price}>${game.price}</p>
-      <button onClick={() => addToCart(game)}>Add to Cart</button>
+      <div className={styles.priceBtn}>
+        <p className={styles.price}>${game.price}</p>
+        <button className={styles.addBtn} onClick={() => addToCart(game)}>Add to Cart</button>
+      </div>
     </div>
   )
 }

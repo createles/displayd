@@ -1,4 +1,6 @@
 .card {
+  display: flex;
+  flex-direction: column;
   border: 1px solid #ccc;
   padding: 10px
 }
@@ -29,6 +31,38 @@
   font-family: sans-serif; /* Or a cool gaming font if you have one */
 }
 
+a {
+  text-decoration: none;
+}
+
+.gameTitle {
+  margin: 10px 0px 5px 0px;
+  color: var(--color-text-main);
+  text-shadow: 1px 1px 2px black;
+}
+
+.priceBtn {
+  display: flex;
+  margin-top: auto;
+}
+
 .price {
   font-weight: bold;
+}
+
+.addBtn {
+  color: var(--color-bg);
+  background-color: var(--color-primary);
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: auto;
+  will-change: scale;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.addBtn:hover {
+  background-color: var(--color-primary-hover);
+  transform: scale(0.95);
+  transition: transform 0.2s ease;
 }
