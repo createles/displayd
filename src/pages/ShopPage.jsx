@@ -3,6 +3,7 @@ import GameCard from "../components/GameCard/GameCard";
 import { useSearchParams } from "react-router";
 import { useEffect, useRef } from "react";
 import styles from "./ShopPage.module.css";
+import LoadingAnim from "../components/LoadingAnim/LoadingAnim"
 
 function ShopPage() {
   const [searchParams] = useSearchParams();
@@ -54,7 +55,12 @@ function ShopPage() {
         ))}
       </div>
 
-      {loading && <p style={{textAlign: "center"}}>Loading games...</p>}
+      {loading && 
+      <div className={styles.loadingCont}>
+        <LoadingAnim/>
+        <p>Loading games...</p>
+      </div>
+      }
       
       {!loading && (
         <div ref={observerTarget} style={{ height: "20px", background: "transparent" }}></div>

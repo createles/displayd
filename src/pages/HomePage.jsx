@@ -3,6 +3,7 @@ import useFetchGames from "../hooks/useFetchGames";
 import GameCard from "../components/GameCard/GameCard";
 import styles from "./HomePage.module.css"
 import HeroCollage from "../components/HeroCollage/HeroCollage";
+import LoadingAnim from "../components/LoadingAnim/LoadingAnim";
 
 
 function HomePage() {
@@ -19,7 +20,12 @@ function HomePage() {
       <section className={styles.featured}>
         <h2>Trending Now</h2>
 
-        {loading && <p>Loading bestsellers...</p>}
+        {loading && 
+        <div className={styles.loadingCont}>
+          <LoadingAnim/>
+          <p>Loading bestsellers...</p>
+        </div>
+        }
         {error && <p>Could not load featured games.</p>}
 
         <div className={styles.grid}>
