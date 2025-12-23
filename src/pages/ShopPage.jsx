@@ -42,7 +42,7 @@ function ShopPage() {
 
   return (
     <div className={styles.shopPage}>
-      <h1>{pageTitle}</h1>
+      <h1 className={styles.pageTitle}>{pageTitle}</h1>
       {games.length === 0 && query && !loading ? (
         <p>No games found for "{query}".</p>
       ) : (
@@ -56,9 +56,9 @@ function ShopPage() {
       </div>
 
       {loading && 
-      <div className={styles.loadingCont}>
+      <div className={`${styles.loadingCont} ${games.length === 0 ? styles.initialLoad : ''}`}>
         <LoadingAnim/>
-        <p>Loading games...</p>
+        <p className={styles.loadingText}>Loading games...</p>
       </div>
       }
       

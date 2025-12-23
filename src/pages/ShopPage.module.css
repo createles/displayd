@@ -2,6 +2,14 @@
   padding: 10px 30px 0px 30px;
 }
 
+.initialLoad {
+  margin-top: 100px;
+}
+
+/* .loadingText {
+  font-size: 1.2rem;
+} */
+
 .results {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -15,9 +23,9 @@
   padding: 10px 0px 10px 0px;
 }
 
-h1 {
+.pageTitle {
   font-size: 2rem;
   margin-bottom: 30px;
-  border-left: 5px solid #ff0055;
+  border-left: 5px solid var(--color-accent);
   padding-left: 15px;
 }
