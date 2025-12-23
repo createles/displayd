@@ -1,11 +1,16 @@
 import { useShoppingCart } from "../../context/CartContext";
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
 import styles from "./CartSideBar.module.css";
 import CartSideItem from "./CartSideItem";
 
 function CartSideBar() {
   const { cartItems, isCartOpen, closeCart } = useShoppingCart();
+  const navigate = useNavigate();
 
+  function handleCheckout() {
+    closeCart();
+    navigate("/cart");
+  }
   const grandTotal = cartItems
     .reduce((total, item) => total + parseFloat(item.price) * item.quantity, 0)
     .toFixed(2);
@@ -24,10 +29,11 @@ function CartSideBar() {
           ))}
         </div>
         <div className={styles.footer}>
-          <p className={styles.grandTotal}>{grandTotal}</p>
-          <Link to="/cart" onClick={closeCart}>
-            <button className={styles.checkOutBtn}>Check out</button>
-          </Link>
+          <div className={styles.totalContainer}>
+            <p className={styles.totalTxt}>Total:</p>
+            <p className={styles.grandTotal}>{grandTotal}</p>
+          </div>
+          <button className={styles.checkOutBtn} onClick={handleCheckout}>checkout</button>
         </div>
       </div>
     </div>

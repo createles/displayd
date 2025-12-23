@@ -24,14 +24,17 @@ function CartSideItem({ item }) {
         />
       )}
 
-      <p>{item.name}</p>
-      <div className={styles.platforms}></div>
-      <p className={styles.itemPrice}>{item.price}</p>
-      <div className={styles.itemFor}></div>
-      <div className={styles.itemBtns}>
-        <button onClick={() => updateQuantity(item.id, -1)}>-</button>
-        <button onClick={() => updateQuantity(item.id, 1)}>+</button>
-        <button onClick={() => removeFromCart(item.id)}>x</button>
+      <div className={styles.itemDetails}>
+        <p>{item.name}</p>  
+        <div className={styles.priceBtns}>
+          <p className={styles.itemPrice}>{item.price}</p>
+          <div className={styles.itemBtns}>
+            <button className={styles.quantityBtn} onClick={() => updateQuantity(item.id, -1)}>-</button>
+            <p className={styles.quantity}>{item.quantity}</p>
+            <button className={styles.quantityBtn} onClick={() => updateQuantity(item.id, 1)}>+</button>
+          </div>
+        </div>
+        <button className={styles.delete} onClick={() => removeFromCart(item.id)}>x</button>
       </div>
     </div>
   );
