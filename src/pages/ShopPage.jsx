@@ -41,7 +41,7 @@ function ShopPage() {
     : "New & Trending";
 
   return (
-    <div>
+    <div className={styles.shopPage}>
       <h1>{pageTitle}</h1>
       {games.length === 0 && query && !loading ? (
         <p>No games found for "{query}".</p>
