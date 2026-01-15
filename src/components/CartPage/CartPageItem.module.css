@@ -1,0 +1,21 @@
+.cardImg, .imgFallback {
+  width: 20%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.itemInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 0 10px;
+}
+
+.cartBtns {
+  display: flex;
+}
+
+.cartItem {
+  display: flex;
+}
