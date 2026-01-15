@@ -37,7 +37,7 @@ function ShopPage() {
   if (error) return <p>Error loading games: {error.message}</p>;
 
   const pageTitle = query
-    ? `Search Results for "${query}`
+    ? `Search Results for "${query}"`
     : "New & Trending";
 
   return (
