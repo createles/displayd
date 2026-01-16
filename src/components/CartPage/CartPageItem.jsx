@@ -7,11 +7,38 @@ function CartPageItem({item}) {
 
   const [imageError, setImageError] = useState(false);
   const [isGift, setIsGift] = useState(false);
-  const [giftCount, setGiftCount] = useState(0);
+
+  const [recipients, setRecipients] = useState([]);
+
+  const addRecipient = () => {
+    if (recipients.length < item.quantity) {
+      setRecipients(prev => [...prev, { id: Date.now(), name: "" }]);
+    }
+  };
+
+  const removeRecipient = (idToDelete) => {
+    const updatedList = recipients.filter(r => r.id !== idToDelete);
+    setRecipients(updatedList);
+
+    if (updatedList.length === 0) {
+      setIsGift(false);
+    }
+  };
+
+  const handleGiftToggle = (e) => {
+    const checked = e.target.checked;
+    setIsGift(checked);
+
+    if (checked) {
+      setRecipients([{ id: Date.now(), name: ""}]);
+    } else {
+      setRecipients([]);
+    }
+  }
 
   return (
     <div key={item.id} className={styles.cartItem}>
-      {/* img or fallback img */}
+      {/* img or fallback img logic */}
       {!item.background_image || imageError ? (
         <div className={styles.imgFallback}>
           <span>{item.name}</span>
@@ -28,19 +55,50 @@ function CartPageItem({item}) {
       <div className={styles.itemInfo}>
         <p> {item.name} </p>
 
-        <label for="gifting"> Gift a copy? <input type="checkbox" id="gifting" name="gifting" value={true} onChange={(e) => setIsGift(e.target.checked)}></input> 
+        <label htmlFor={`gifting-${item.id}`}> 
+          Gift a copy? 
+          <input 
+          type="checkbox" 
+          id={`gifting-${item.id}`} 
+          checked={isGift} 
+          onChange={handleGiftToggle}
+          /> 
         </label>
+
         {isGift && 
-          // {setGiftCount(1)} continue conditional render (probably via an event handler)
           (
-            <>
-              <input type="text" placeholder="input recipient's username..." className={styles.giftInput}></input>
-              <button type="button"> add a recipient... </button>
-            </>
+            <div className={styles.giftSection}>
+              {recipients.map((recipient) => (
+                <div key={recipient.id} className={styles.giftRow}>
+                  <input
+                    type="text" 
+                    placeholder="input recipient's username..." 
+                    className={styles.giftInput}
+                  />
+
+                  <button
+                    type="button"
+                    onClick={() => removeRecipient(recipient.id)}
+                    className={styles.removeRecipientBtn}
+                  > 
+                    X 
+                  </button>
+                </div>
+              ))}
+
+              {recipients.length < item.quantity && (
+                <button 
+                type="button" 
+                onClick={addRecipient}>
+                   + add a recipient... 
+                </button>
+              )}
+            </div>
           )}
         <p> {parseFloat(item.quantity * item.price).toFixed(2)} </p>
         <div className={styles.cartBtns}>
           <button onClick={() => updateQuantity(item.id, -1)}>-</button>
+          <p>{item.quantity}</p>
           <button onClick={() => updateQuantity(item.id, 1)}>+</button>
           <button onClick={() => removeFromCart(item.id)}>x</button>
         </div>
