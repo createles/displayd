@@ -53,15 +53,16 @@ function CartPageItem({item}) {
         />
       )}
       <div className={styles.itemInfo}>
-        <p> {item.name} </p>
+        <p className={styles.itemName}> {item.name} </p>
 
-        <label htmlFor={`gifting-${item.id}`}> 
+        <label htmlFor={`gifting-${item.id}`} className={styles.giftSpan}> 
           Gift a copy? 
           <input 
           type="checkbox" 
           id={`gifting-${item.id}`} 
           checked={isGift} 
           onChange={handleGiftToggle}
+          className={styles.giftCheck}
           /> 
         </label>
 
@@ -100,9 +101,9 @@ function CartPageItem({item}) {
           <button onClick={() => updateQuantity(item.id, -1)}>-</button>
           <p>{item.quantity}</p>
           <button onClick={() => updateQuantity(item.id, 1)}>+</button>
-          <button onClick={() => removeFromCart(item.id)}>x</button>
         </div>
       </div>
+      <button onClick={() => removeFromCart(item.id)} className={styles.removeCartItem}>x</button>
     </div>
   );
 }

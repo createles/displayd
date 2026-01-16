@@ -10,12 +10,55 @@
   display: flex;
   flex-direction: column;
   padding: 0 0 0 10px;
+  gap: 3px;
+}
+
+.itemName {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.giftSpan {
+  font-size: 0.7rem;
+  display: flex;
+}
+
+.giftCheck {
+  margin-left: 4px;
+}
+
+.giftRow {
+  display: flex;
+  margin: 5px 0 2px 0;
+}
+
+.giftInput {
+  height: 1rem;
+}
+
+.removeRecipientBtn {
+  margin-left: 4px;
 }
 
 .cartBtns {
   display: flex;
+  gap: 5px;
 }
 
 .cartItem {
   display: flex;
+  position: relative;
+}
+
+.removeCartItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  background-color: var(--color-bg-muted);
+  height: 1.2rem;
+  width: 1.2rem;
+  border-radius: 10px;
 }
