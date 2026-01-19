@@ -40,7 +40,7 @@ function CartPage() {
                 />
               ))}
             </div>
-            <p>{grandTotal}</p>
+            <p className={styles.grandTotal}>Total: {grandTotal}</p>
             <button type="button" onClick={viewConfirm}>Proceed to payment</button>
           </div>
         )}
