@@ -1,5 +1,5 @@
-.pageContainer {
-  color: #333;
+.gameDetailsContainer {
+  position: relative;
 }
 
 /* Hero banner */
@@ -112,4 +112,53 @@
   list-style: none;
   padding: 0;
   margin: 5px 0 0 0;
+}
+
+.mediaModal {
+  width: 100svw;
+  height: 100svh;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 888;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* transition properties */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  will-change: opacity;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mediaCont {
+  width: 60svw;
+  aspect-ratio: 16 / 9;
+  background-color: var(--color-bg-muted);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* scaling animation */
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.visible .mediaCont {
+  transform: scale(1);
+}
+
+.displayedMedia {
+  width: 100%;
+  aspect-ratio: 16 / 9;
 }
