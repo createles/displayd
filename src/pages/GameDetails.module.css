@@ -2,6 +2,13 @@
   position: relative;
 }
 
+.loadingCont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Hero banner */
 .banner {
   height: 400px;

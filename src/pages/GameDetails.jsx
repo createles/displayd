@@ -3,6 +3,7 @@ import useGameDetails from "../hooks/useGameDetails"
 import generatePrice from "../utils/generatePrice"
 import { useShoppingCart } from "../context/CartContext"
 import { useState } from "react"
+import LoadingAnim from "../components/LoadingAnim/LoadingAnim"
 import styles from "./GameDetails.module.css"
 
 function GameDetails() {
@@ -13,7 +14,12 @@ function GameDetails() {
   const [viewMedia, setViewMedia] = useState(false);
   const [currentlyViewing, setCurrentlyViewing] = useState("");
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return (
+  <div className={styles.loadingCont}>
+    <LoadingAnim/>
+    <p className={styles.loadingTxt}>Loading game details...</p>
+  </div>
+  );
   if (error) return <p>Error loading game.</p>;
 
   const price = generatePrice(game);
