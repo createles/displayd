@@ -29,3 +29,11 @@
   border-left: 5px solid var(--color-accent);
   padding-left: 15px;
 }
+
+@media (max-width: 768px) {
+  .results {
+    padding: 10px;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
