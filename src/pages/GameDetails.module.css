@@ -29,13 +29,21 @@
 }
 
 .addBtn {
-  background-color: #ff0055;
+  background-color: var(--color-accent);
   color: white;
-  border: none;
-  padding: 15px 30px;
+  padding: 10px 10px;
+  border-radius: 5px;
   font-size: 1.2rem;
-  border-radius: 8px;
   cursor: pointer;
+  will-change: scale;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.addBtn:hover {
+  background-color: var(--color-accent-hover);
+  transform: scale(0.95);
+  transition: transform 0.2s ease;
 }
 
 /* Content Layout */
@@ -89,7 +97,7 @@
 
 /* Further info stats */
 .statBox {
-  background: #f5f5f5;
+  background: var(--color-bg-muted);
   padding: 20px;
   border-radius: 12px;
 }

@@ -23,7 +23,7 @@ function GameDetails() {
       <div className={styles.banner} style={{ backgroundImage: `url(${game.background_image})` }}>
         <div className={styles.bannerOverlay}>
           <h1>{game.name}</h1>
-          <button onClick={() => addToCart(gameWithPrice)}>
+          <button className={styles.addBtn} onClick={() => addToCart(gameWithPrice)}>
             Add to cart - ${price}
           </button>
         </div>
