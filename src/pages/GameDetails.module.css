@@ -169,3 +169,19 @@
   width: 100%;
   aspect-ratio: 16 / 9;
 }
+
+@media (max-width: 768px) {
+  .content {
+      flex-direction: column; 
+      padding: 0 15px;
+  }
+
+  .bannerOverlay h1 {
+    font-size: 1.8rem;
+  }
+
+  .addBtn {
+    width: 50%;
+    font-size: 0.8rem;
+  }
+}
