@@ -75,9 +75,6 @@ export function CartProvider({ children }) {
     });
   }
 
-  // test log for cart items
-  console.log("Current cart:", cartItems);
-
   return (
     <CartContext.Provider value={{ 
       cartItems,
