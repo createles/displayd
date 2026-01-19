@@ -96,10 +96,10 @@ function CartPageItem({item}) {
               )}
             </div>
           )}
-        <p> {parseFloat(item.quantity * item.price).toFixed(2)} </p>
+        <p className={styles.itemPrice}> {parseFloat(item.quantity * item.price).toFixed(2)} </p>
         <div className={styles.cartBtns}>
           <button onClick={() => updateQuantity(item.id, -1)}>-</button>
-          <p>{item.quantity}</p>
+          <p className={styles.itemQuant}>{item.quantity}</p>
           <button onClick={() => updateQuantity(item.id, 1)}>+</button>
         </div>
       </div>
