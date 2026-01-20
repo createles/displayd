@@ -9,6 +9,9 @@
   padding: 20px;
   background: var(--color-bg);
   color: var(--color-primary);
+
+  /* prevent nav from causing scrollbars */
+  max-width: 100svw;
 }
 
 .siteLogo {
@@ -59,4 +62,11 @@ button {
   top: -2px;
   left: 20%;
   color: var(--color-bg);
+}
+
+@media (max-width: 600px) {
+  .nav {
+    padding: 10px;
+    gap: 20px;
+  }
 }
