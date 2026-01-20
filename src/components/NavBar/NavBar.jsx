@@ -7,6 +7,7 @@ import {
   IoCartOutline,
   IoHomeOutline,
 } from "react-icons/io5";
+import logoImg from "../../assets/images/logo/toon-dp-outline-green.svg";
 
 function NavBar() {
   const { cartItems, openCart } = useShoppingCart();
@@ -20,7 +21,7 @@ function NavBar() {
     <nav className={styles.nav}>
       <Link to="/" className={styles.logoLink}>
         <img
-          src="/src/assets/images/logo/toon-dp-outline-green.svg"
+          src={logoImg}
           alt="displayd logo"
           className={styles.siteLogo}
         />
