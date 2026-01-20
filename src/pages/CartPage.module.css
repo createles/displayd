@@ -7,6 +7,27 @@
 }
 
 .cartCheckout {
-  /* display: flex;
-  flex-direction: column; */
+  padding-bottom: 50px;
+}
+
+.footer {
+  margin-top: 20px;
+}
+
+.proceedBtn {
+  background-color: var(--color-primary);
+  height: 1.5rem;
+  padding: 5px;
+  color: var(--color-bg);
+  margin: 20px 0 5px 0;
+  border-radius: 5px;
+  will-change: scale;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.proceedBtn:hover {
+  background-color: var(--color-primary-hover);
+  transform: scale(0.95);
+  transition: transform 0.2s ease;
 }
